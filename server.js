@@ -39,6 +39,12 @@ app.delete('/reviews/:id', reviews.delete);
 
 app.get('/genres', genres.findAll);
 app.get('/genres/:id', genres.find);
- 
-app.listen(8080);
-console.log('Listening on port 8080...');
+
+app.get('/', function(request, response) {
+  response.send('Welcome to the SongFeedback API, heres where I might include some helpful information, or just never change this sentence...');
+});
+
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
