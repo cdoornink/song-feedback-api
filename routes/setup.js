@@ -32,7 +32,11 @@ var populateGenresDB = function() {
     }];
  
     db.collection('genres', function(err, collection) {
-        collection.insert(genres, {safe:true}, function(err, result) {});
+      console.log("collection name: "+collection.name);
+      
+        collection.insert(genres, {safe:false}, function(err, result) {
+          console.log ("genres result?????")
+        });
     });
  
 };
@@ -82,7 +86,9 @@ var populateSongsDB = function() {
     }];
  
     db.collection('songs', function(err, collection) {
-        collection.insert(songs, {safe:true}, function(err, result) {});
+        collection.insert(songs, {safe:true}, function(err, result) {
+          console.log ("songs result?????")
+        });
     });
  
 };
