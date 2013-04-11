@@ -11,39 +11,11 @@ db.open(function(err, db) {
   console.log("err: "+err);
     if(!err) {
         console.log("Connected to 'testdb' database");
-        console.log("attempt to get songs collection");
-        db.collection('songs', {strict:true}, function(err, collection) {
-          console.log("entered collection function");
-          console.log("err: "+err);
-            if (err) {
-                console.log("The 'songs' collection doesn't exist. Creating it with sample data...");
-                populateSongsDB();
-            }
-        });
-        db.collection('genres', {strict:true}, function(err, collection) {
-            if (err) {
-                console.log("The 'genres' collection doesn't exist. Creating it with sample data...");
-                populateGenresDB();
-            }
-        });
-        db.collection('users', {strict:true}, function(err, collection) {
-            if (err) {
-                console.log("The 'users' collection doesn't exist. Creating it with sample data...");
-                populateUsersDB();
-            }
-        });
-        db.collection('comments', {strict:true}, function(err, collection) {
-            if (err) {
-                console.log("The 'comments' collection doesn't exist. Creating it with sample data...");
-                populateCommentsDB();
-            }
-        });
-        db.collection('reviews', {strict:true}, function(err, collection) {
-            if (err) {
-                console.log("The 'reviews' collection doesn't exist. Creating it with sample data...");
-                populateReviewsDB();
-            }
-        });
+        populateSongsDB();
+        populateGenresDB();
+        populateUsersDB();
+        populateCommentsDB();
+        populateReviewsDB();
     }
 });
 
