@@ -5,17 +5,16 @@ var Server = mongo.Server,
     BSON = mongo.BSONPure;
 
 var server = new Server('ds033487.mongolab.com', 33487, {auto_reconnect: true});
-db = new Db('testdb5', server);
+db = new Db('testdb', server);
 
 db.open(function(err, db) {
   console.log("err: "+err);
     if(!err) {
-        console.log("Connected to 'testdb5' database");
+        console.log("Connected to 'testdb' database");
         console.log("attempt to get songs collection");
         db.collection('songs', {strict:true}, function(err, collection) {
           console.log("entered collection function");
-          console.log(err);
-          console.log(collection);
+          console.log("err: "+err);
             if (err) {
                 console.log("The 'songs' collection doesn't exist. Creating it with sample data...");
                 populateSongsDB();
@@ -49,7 +48,7 @@ db.open(function(err, db) {
 });
 
 var populateGenresDB = function() {
- 
+  console.log("populating genres db");
     var genres = [{
       name: 'Rock/Pop'
     }, {
