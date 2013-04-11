@@ -1,10 +1,3 @@
-var mongo = require('mongodb');
- 
-var Server = mongo.Server,
-    Db = mongo.Db,
-    BSON = mongo.BSONPure;
-
-
 exports.find = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving song: ' + id);

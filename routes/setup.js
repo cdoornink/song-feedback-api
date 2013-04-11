@@ -3,8 +3,17 @@ var mongo = require('mongodb');
 var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
+
+var mongoUri = process.env.MONGOLAB_URI || 
+  process.env.MONGOHQ_URL || 
+  'mongodb://heroku_app14829754:mctvcf7c9bneljjuam960l2ibp@ds033487.mongolab.com:33487/heroku_app14829754'; 
+
+mongo.Db.connect(mongoUri, function (err, db) {
+  db = new Db('testdb', server);
+  
+});
  
-var server = new Server('localhost', 27017, {auto_reconnect: true});
+var server = new Server('ds033487.mongolab.com', 33487, {auto_reconnect: true});
 db = new Db('testdb5', server);
  
 db.open(function(err, db) {
