@@ -4,7 +4,7 @@ exports.find = function(req, res) {
   db.collection('songs', function(err, collection) {
     if(err){console.log('ERROR 1.0.0 :: '+err)}else{console.log("retrieved songs collection")}
     console.log(collection[0]);
-    collection.find({'_id': id}, function(err, item) {
+    collection.find({'_id': id},{name:1, artist:1}, function(err, item) {
       if(err){console.log('ERROR 1.0.1 :: '+err)}else{console.log("found song item: "+item);console.log(item)}
       res.send(item);
     });
