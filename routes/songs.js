@@ -1,22 +1,24 @@
 exports.find = function(req, res) {
-    var id = req.params.id;
-    console.log('Retrieving song: ' + id);
-    db.collection('songs', function(err, collection) {
-        collection.findOne({'_id': id}, function(err, item) {
-            res.send(item);
-        });
+  var id = req.params.id;
+  console.log('Retrieving song: ' + id);
+  db.collection('songs', function(err, collection) {
+    if(err){console.log('ERROR 1.0.0 :: '+err)}else{console.log("retrieved songs collection")}
+    collection.findOne({'_id': id}, function(err, item) {
+      if(err){console.log('ERROR 1.0.1 :: '+err)}else{console.log("found song item: "+item)}
+      res.send(item);
     });
+  });
 };
  
 exports.findAll = function(req, res) {
-  console.log("retrieveing all songs");
-    db.collection('songs', function(err, collection) {
-        collection.find().toArray(function(err, items) {
-          console.log("err: "+err)
-          console.log(items)
-            res.send(items);
-        });
+  console.log("retrieving all songs");
+  db.collection('songs', function(err, collection) {
+    if(err){console.log('ERROR 1.1.0 :: '+err)}else{console.log("retrieved songs collection")}
+    collection.find().toArray(function(err, items) {
+      if(err){console.log('ERROR 1.1.1 :: '+err)}else{console.log("found all song items")}
+      res.send(items);
     });
+  });
 };
  
 exports.add = function(req, res) {
