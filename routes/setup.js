@@ -4,20 +4,18 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
-// var mongoUri = process.env.MONGOLAB_URI || 
-//   process.env.MONGOHQ_URL || 
-//   'mongodb://heroku_app14829754:mctvcf7c9bneljjuam960l2ibp@ds033487.mongolab.com:33487/heroku_app14829754'; 
 var server = new Server('ds033487.mongolab.com', 33487, {auto_reconnect: true});
 db = new Db('testdb5', server);
 
-console.log("open");
-console.log(db);
-console.log("-------------------------"); 
 db.open(function(err, db) {
   console.log("err: "+err);
     if(!err) {
         console.log("Connected to 'testdb5' database");
+        console.log("attempt to get songs collection");
         db.collection('songs', {strict:true}, function(err, collection) {
+          console.log("entered collection function");
+          console.log(err);
+          console.log(collection);
             if (err) {
                 console.log("The 'songs' collection doesn't exist. Creating it with sample data...");
                 populateSongsDB();
