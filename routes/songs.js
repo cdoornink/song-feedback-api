@@ -11,8 +11,9 @@ exports.find = function(req, res) {
 exports.findAll = function(req, res) {
   console.log("retrieveing all songs");
     db.collection('songs', function(err, collection) {
-      console.log(collection);
         collection.find().toArray(function(err, items) {
+          console.log("err: "+err)
+          console.log(items)
             res.send(items);
         });
     });
