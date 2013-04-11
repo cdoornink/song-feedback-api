@@ -15,9 +15,11 @@ app.configure(function () {
  
 app.get('/songs', songs.findAll);
 app.get('/songs/:id', songs.find);
+app.get('/songs/user/:id', songs.findAllForUser);
 app.post('/songs', songs.add);
 app.put('/songs/:id', songs.update);
 app.delete('/songs/:id', songs.delete);
+
 
 app.get('/users', users.findAll);
 app.get('/users/:id', users.find);

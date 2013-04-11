@@ -1,13 +1,25 @@
+var mongo = require('mongodb');
+ 
+var Server = mongo.Server,
+    Db = mongo.Db,
+    BSON = mongo.BSONPure;
+
+
 exports.find = function(req, res) {
   var id = req.params.id;
   console.log('Retrieving song: ' + id);
   db.collection('songs', function(err, collection) {
-    if(err){console.log('ERROR 1.0.0 :: '+err)}else{console.log("retrieved songs collection")}
-    console.log(collection[0]);
-    collection.find({'_id': id}).toArray(function(err, results){
-      if(err){console.log('ERROR 1.0.1 :: '+err)}else{console.log("found song item: "+results)}
-      res.send(results);
+    if(err){console.log('ERROR 1.0.0 :: '+err)}else{console.log("retrieved songs123123 collection")}
+    console.log(collection);
+    collection.find({_id: new BSON.ObjectID(id)}).toArray(function(err, document) {
+        console.log(document);
+        res.send(document);
     });
+    
+    // collection.find({'_id': id}).toArray(function(err, results){
+//       if(err){console.log('ERROR 1.0.1 :: '+err)}else{console.log("found song item: "+results)}
+//       res.send(results);
+//     });
   });
 };
  
@@ -18,6 +30,17 @@ exports.findAll = function(req, res) {
     collection.find().toArray(function(err, items) {
       if(err){console.log('ERROR 1.1.1 :: '+err)}else{console.log("found all song items")}
       res.send(items);
+    });
+  });
+};
+
+exports.findAllForUser = function(req, res) {
+  var id = parseInt(req.params.id);
+  console.log("retrieving all songs for user:"+id);
+  db.collection('songs', function(err, collection) {
+    collection.find({user: id}).toArray(function(err, document) {
+      console.log(document)
+      res.send(document);
     });
   });
 };
