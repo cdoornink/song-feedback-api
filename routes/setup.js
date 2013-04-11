@@ -4,11 +4,11 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
-var server = new Server('ds033487.mongolab.com', 33486, {auto_reconnect: true});
+var server = new Server('ds033487.mongolab.com', 33487, {auto_reconnect: true});
 db = new Db('testdb', server);
+console.log(db);
 
 db.open(function(err, db) {
-  console.log("err: "+err);
     if(!err) {
         console.log("Connected to 'testdb' database");
         populateSongsDB();
