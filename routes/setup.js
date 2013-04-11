@@ -87,7 +87,7 @@ var populateSongsDB = function() {
     }];
  
     db.collection('songs', function(err, collection) {
-        collection.insert(songs, {safe:true}, function(err, result) {
+        collection.insert(songs, {safe:false}, function(err, result) {
           console.log ("songs result?????")
           console.log (result)
         });
@@ -125,7 +125,7 @@ var populateCommentsDB = function() {
     }];
  
     db.collection('comments', function(err, collection) {
-        collection.insert(comments, {safe:true}, function(err, result) {});
+        collection.insert(comments, {safe:false}, function(err, result) {});
     });
  
 };
@@ -195,7 +195,7 @@ var populateReviewsDB = function() {
     }];
  
     db.collection('reviews', function(err, collection) {
-        collection.insert(reviews, {safe:true}, function(err, result) {});
+        collection.insert(reviews, {safe:false}, function(err, result) {});
     });
  
 };
@@ -223,7 +223,7 @@ var populateUsersDB = function() {
     }];
  
     db.collection('users', function(err, collection) {
-        collection.insert(users, {safe:true}, function(err, result) {});
+        collection.insert(users, {safe:false}, function(err, result) {});
     });
  
 };
