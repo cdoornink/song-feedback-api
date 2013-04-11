@@ -8,6 +8,8 @@ var Server = mongo.Server,
 //   process.env.MONGOHQ_URL || 
 //   'mongodb://heroku_app14829754:mctvcf7c9bneljjuam960l2ibp@ds033487.mongolab.com:33487/heroku_app14829754'; 
 var server = new Server('ds033487.mongolab.com', 33487, {auto_reconnect: true});
+console.log "tried to connect"
+console.log server
 db = new Db('testdb5', server);
  
 db.open(function(err, db) {
