@@ -9,14 +9,18 @@ db = new Db('testdb1', server);
 console.log(db);
 
 db.open(function(err, db) {
+  db.authenticate('heroku_app14829754', 'mctvcf7c9bneljjuam960l2ibp', function(err, success) {
+    console.log(success)
+    console.log(err)
     if(!err) {
-        console.log("Connected to 'testdb' database");
+        console.log("Supposedly connected to 'testdb' database");
         populateSongsDB();
         populateGenresDB();
         populateUsersDB();
         populateCommentsDB();
         populateReviewsDB();
-    }
+    }       
+  });
 });
 
 var populateGenresDB = function() {
