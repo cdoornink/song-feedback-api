@@ -35,7 +35,8 @@ var populateGenresDB = function() {
       console.log("collection name: "+collection.name);
       
         collection.insert(genres, {safe:false}, function(err, result) {
-          console.log ("genres result?????")
+          console.log ("genres result?????");
+          console.log (result)
         });
     });
  
@@ -88,6 +89,7 @@ var populateSongsDB = function() {
     db.collection('songs', function(err, collection) {
         collection.insert(songs, {safe:true}, function(err, result) {
           console.log ("songs result?????")
+          console.log (result)
         });
     });
  
