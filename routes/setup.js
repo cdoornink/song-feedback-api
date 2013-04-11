@@ -5,7 +5,7 @@ var Server = mongo.Server,
     BSON = mongo.BSONPure;
 
 var server = new Server('ds033487.mongolab.com', 33487, {auto_reconnect: true});
-db = new Db('testdb', server);
+db = new Db('testdb1', server);
 console.log(db);
 
 db.open(function(err, db) {
@@ -32,12 +32,7 @@ var populateGenresDB = function() {
     }];
  
     db.collection('genres', function(err, collection) {
-      console.log("collection name: "+collection.name);
-      
-        collection.insert(genres, {safe:false}, function(err, result) {
-          console.log ("genres result?????");
-          console.log (result)
-        });
+      collection.insert(genres, {safe:false}, function(err, result) {});
     });
  
 };
@@ -87,10 +82,7 @@ var populateSongsDB = function() {
     }];
  
     db.collection('songs', function(err, collection) {
-        collection.insert(songs, {safe:false}, function(err, result) {
-          console.log ("songs result?????")
-          console.log (result)
-        });
+        collection.insert(songs, {safe:false}, function(err, result) {});
     });
  
 };
