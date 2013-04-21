@@ -4,13 +4,25 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
-
 exports.find = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving user: ' + id);
     db.collection('users', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            res.send(item);
+        collection.findOne({'sfid':id}, function(err, item) {
+          response = {"user":item}
+          res.send(response);
+        });
+    });
+};
+
+exports.auth = function(req, res) {
+    var email = req.body.email;
+    var password = req.body.password;
+    console.log('Retrieving user: ' + email);
+    db.collection('users', function(err, collection) {
+        collection.findOne({'email':email, 'password':password}, function(err, item) {
+          response = {"user":item}
+          res.send(response);
         });
     });
 };
@@ -18,7 +30,8 @@ exports.find = function(req, res) {
 exports.findAll = function(req, res) {
     db.collection('users', function(err, collection) {
         collection.find().toArray(function(err, items) {
-            res.send(items);
+          response = {"users":items};
+          res.send(response);
         });
     });
 };

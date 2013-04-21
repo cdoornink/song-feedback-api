@@ -8,7 +8,8 @@ exports.find = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving genre: ' + id);
     db.collection('genres', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+        // collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+        collection.findOne({'_id':id}, function(err, item) {
             res.send(item);
         });
     });

@@ -9,8 +9,10 @@ exports.find = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving comment: ' + id);
     db.collection('comments', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            res.send(item);
+        // collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+        collection.findOne({'_id':id}, function(err, item) {
+          response = {"comment":item}
+          res.send(response);
         });
     });
 };
@@ -18,7 +20,8 @@ exports.find = function(req, res) {
 exports.findAll = function(req, res) {
     db.collection('comments', function(err, collection) {
         collection.find().toArray(function(err, items) {
-            res.send(items);
+          response = {"comments":items};
+          res.send(response);
         });
     });
 };

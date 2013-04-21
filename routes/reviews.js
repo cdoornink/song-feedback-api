@@ -9,8 +9,10 @@ exports.find = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving review: ' + id);
     db.collection('reviews', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            res.send(item);
+        // collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+        collection.findOne({'_id':id}, function(err, item) {
+          response = {"review":item};
+          res.send(response);
         });
     });
 };
@@ -18,7 +20,8 @@ exports.find = function(req, res) {
 exports.findAll = function(req, res) {
     db.collection('reviews', function(err, collection) {
         collection.find().toArray(function(err, items) {
-            res.send(items);
+          response = {"reviews":items};
+          res.send(response);
         });
     });
 };

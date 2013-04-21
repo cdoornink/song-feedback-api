@@ -4,49 +4,40 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
-
 exports.find = function(req, res) {
   var id = req.params.id;
   console.log('Retrieving song: ' + id);
   db.collection('songs', function(err, collection) {
-    if(err){console.log('ERROR 1.0.0 :: '+err)}else{console.log("retrieved songs123123 collection")}
-    console.log(collection);
-    collection.find({_id: new BSON.ObjectID(id)}).toArray(function(err, document) {
-        console.log(document);
-        res.send(document);
+    collection.find({sfid: id}).toArray(function(err, item) {
+      response = {"song":item};
+      res.send(response);
     });
-    
-    // collection.find({'_id': id}).toArray(function(err, results){
-//       if(err){console.log('ERROR 1.0.1 :: '+err)}else{console.log("found song item: "+results)}
-//       res.send(results);
-//     });
   });
 };
  
 exports.findAll = function(req, res) {
   console.log("retrieving all songs");
   db.collection('songs', function(err, collection) {
-    if(err){console.log('ERROR 1.1.0 :: '+err)}else{console.log("retrieved songs collection")}
     collection.find().toArray(function(err, items) {
-      if(err){console.log('ERROR 1.1.1 :: '+err)}else{console.log("found all song items")}
-      res.send(items);
+      response = {"songs":items};
+      res.send(response);
     });
   });
 };
 
 exports.findAllForUser = function(req, res) {
-  var id = parseInt(req.params.id);
+  var id = req.params.id;
   console.log("retrieving all songs for user:"+id);
   db.collection('songs', function(err, collection) {
-    collection.find({user: id}).toArray(function(err, document) {
-      console.log(document)
-      res.send(document);
+    collection.find({'user':id}).toArray(function(err, items) {
+      response = {"songs":items};
+      res.send(response);
     });
   });
 };
  
 exports.add = function(req, res) {
-    var song = req.body;
+    var song = req.body.song;
     console.log('Adding song: ' + JSON.stringify(song));
     db.collection('songs', function(err, collection) {
         collection.insert(song, {safe:true}, function(err, result) {
@@ -54,7 +45,7 @@ exports.add = function(req, res) {
                 res.send({'error':'An error has occurred'});
             } else {
                 console.log('Success: ' + JSON.stringify(result[0]));
-                res.send(result[0]);
+                res.send("OK");
             }
         });
     });
