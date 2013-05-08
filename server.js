@@ -32,6 +32,7 @@ app.configure(function () {
  
 app.get('/songs', songs.findAll);
 app.get('/songs/:id', songs.find);
+app.get('/songs/recent/all', songs.findRecent);
 app.get('/songs/user/:id', songs.findAllForUser);
 app.post('/songs', songs.add);
 app.put('/songs/:id', songs.update);
