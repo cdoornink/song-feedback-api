@@ -28,7 +28,7 @@ exports.findAll = function(req, res) {
 exports.findRecent = function(req, res) {
   console.log("retrieving all songs by most recent");
   db.collection('songs', function(err, collection) {
-    collection.find().sort( { sfid: -1 } ).toArray(function(err, items) {
+    collection.find().sort( { _id: -1 } ).toArray(function(err, items) {
       response = {"songs":items};
       res.send(response);
     });
