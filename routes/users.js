@@ -32,7 +32,8 @@ exports.email_check = function(req, res) {
     console.log('Checking for current user: ' + email);
     db.collection('users', function(err, collection) {
         collection.findOne({'email':email}, function(err, item) {
-          response = item ? false : true
+          state = item ? false : true
+          response = {"available":state}
           res.send(response);
         });
     });
