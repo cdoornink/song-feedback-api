@@ -42,6 +42,7 @@ app.delete('/songs/:id', songs.delete);
 app.get('/users', users.findAll);
 app.get('/users/:id', users.find);
 app.post('/auth', users.auth);
+app.post('/check_availability', users.email_check);
 app.post('/users', users.add);
 app.put('/users/:id', users.update);
 app.delete('/users/:id', users.delete);

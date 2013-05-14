@@ -26,6 +26,17 @@ exports.auth = function(req, res) {
         });
     });
 };
+
+exports.email_check = function(req, res) {
+    var email = req.body.email;
+    console.log('Checking for current user: ' + email);
+    db.collection('users', function(err, collection) {
+        collection.findOne({'email':email}, function(err, item) {
+          response = item ? false : true
+          res.send(response);
+        });
+    });
+};
  
 exports.findAll = function(req, res) {
     db.collection('users', function(err, collection) {
