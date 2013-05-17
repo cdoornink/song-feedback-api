@@ -67,7 +67,7 @@ exports.update = function(req, res) {
     console.log('Updating song: ' + id);
     console.log(JSON.stringify(song));
     db.collection('songs', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, song, {safe:true}, function(err, result) {
+        collection.update({sfid: id}, song, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating song: ' + err);
                 res.send({'error':'An error has occurred'});
