@@ -35,7 +35,7 @@ app.get('/songs/:id', songs.find);
 app.get('/songs/recent/all', songs.findRecent);
 app.get('/songs/user/:id', songs.findAllForUser);
 app.post('/songs', songs.add);
-app.post('/songs/:id', songs.update);
+app.put('/songs/:id', songs.update);
 app.delete('/songs/:id', songs.delete);
 
 
