@@ -4,7 +4,9 @@ var express = require('express'),
     users = require('./routes/users'),
     comments = require('./routes/comments'),
     reviews = require('./routes/reviews'),
-    genres = require('./routes/genres');
+    genres = require('./routes/genres'),
+    projects = require('./osmp/projects'),
+    osmpusers = require('./osmp/users');
  
 var app = express();
 
@@ -29,7 +31,7 @@ app.configure(function () {
 });
 
 
- 
+//SongFeedback APIs 
 app.get('/songs', songs.findAll);
 app.get('/songs/:id', songs.find);
 app.get('/songs/recent/all', songs.findRecent);
@@ -37,7 +39,6 @@ app.get('/songs/user/:id', songs.findAllForUser);
 app.post('/songs', songs.add);
 app.put('/songs/:id', songs.update);
 app.delete('/songs/:id', songs.delete);
-
 
 app.get('/users', users.findAll);
 app.get('/users/:id', users.find);
@@ -62,8 +63,25 @@ app.delete('/reviews/:id', reviews.delete);
 app.get('/genres', genres.findAll);
 app.get('/genres/:id', genres.find);
 
+//Open Source Music Project APIs
+app.get('/osmp/projects', projects.findAll);
+app.get('/osmp/projects/:id', projects.find);
+app.get('/osmp/projects/recent/all', projects.findRecent);
+app.get('/osmp/projects/user/:id', projects.findAllForUser);
+app.post('/osmp/projects', projects.add);
+app.put('/osmp/projects/:id', projects.update);
+app.delete('/osmp/projects/:id', projects.delete);
+
+app.get('/osmp/users', osmpusers.findAll);
+app.get('/osmp/users/:id', osmpusers.find);
+app.post('/osmp/auth', osmpusers.auth);
+app.post('/osmp/check_availability', osmpusers.email_check);
+app.post('/osmp/users', osmpusers.add);
+app.put('/osmp/users/:id', osmpusers.update);
+app.delete('/osmp/users/:id', osmpusers.delete);
+
 app.get('/', function(request, response) {
-  response.send('Welcome to the SongFeedback API, heres where I might include some helpful information, or just never change this sentence...');
+  response.send('Welcome to the SongFeedback/OpenSourceMusicProject APIs, heres where I might include some helpful information, or just never change this sentence...');
 });
 
 var port = process.env.PORT || 5000;
