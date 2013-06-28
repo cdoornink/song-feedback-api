@@ -68,6 +68,7 @@ app.get('/osmp/projects', projects.findAll);
 app.get('/osmp/projects/:id', projects.find);
 app.get('/osmp/projects/recent/all', projects.findRecent);
 app.get('/osmp/projects/user/:id', projects.findAllForUser);
+app.post('/osmp/projects/multiple', projects.findAllListed);
 app.post('/osmp/projects', projects.add);
 app.put('/osmp/projects/:id', projects.update);
 app.delete('/osmp/projects/:id', projects.delete);

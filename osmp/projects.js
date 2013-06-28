@@ -39,7 +39,19 @@ exports.findAllForUser = function(req, res) {
   var id = req.params.id;
   console.log("retrieving all projects for user:"+id);
   db.collection('projects', function(err, collection) {
-    collection.find({'user':id}).toArray(function(err, items) {
+    collection.find({'creator.id':id}).toArray(function(err, items) {
+      response = {"projects":items};
+      res.send(response);
+    });
+  });
+};
+
+exports.findAllListed = function(req, res) {
+  var ids = req.body.ids;
+  console.log("retrieving an array of projects");
+  console.log(ids)
+  db.collection('projects', function(err, collection) {
+    collection.find({'osmpid':{$in:ids}}).toArray(function(err, items) {
       response = {"projects":items};
       res.send(response);
     });
