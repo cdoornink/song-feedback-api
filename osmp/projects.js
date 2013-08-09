@@ -67,7 +67,7 @@ exports.add = function(req, res) {
                 res.send({'error':'An error has occurred'});
             } else {
                 console.log('Success: ' + JSON.stringify(result[0]));
-                res.send("OK");
+                res.send(project);
             }
         });
     });

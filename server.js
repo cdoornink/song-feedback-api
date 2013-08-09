@@ -7,6 +7,8 @@ var express = require('express'),
     genres = require('./routes/genres'),
     projects = require('./osmp/projects'),
     osmpusers = require('./osmp/users');
+    testprojects = require('./osmp/testprojects'),
+    testosmpusers = require('./osmp/testusers');
  
 var app = express();
 
@@ -80,6 +82,24 @@ app.post('/osmp/check_availability', osmpusers.email_check);
 app.post('/osmp/users', osmpusers.add);
 app.put('/osmp/users/:id', osmpusers.update);
 app.delete('/osmp/users/:id', osmpusers.delete);
+
+//Open Source Music Project TEST APIs
+app.get('/osmp/test/projects', testprojects.findAll);
+app.get('/osmp/test/projects/:id', testprojects.find);
+app.get('/osmp/test/projects/recent/all', testprojects.findRecent);
+app.get('/osmp/test/projects/user/:id', testprojects.findAllForUser);
+app.post('/osmp/test/projects/multiple', testprojects.findAllListed);
+app.post('/osmp/test/projects', testprojects.add);
+app.put('/osmp/test/projects/:id', testprojects.update);
+app.delete('/osmp/test/projects/:id', testprojects.delete);
+
+app.get('/osmp/test/users', testosmpusers.findAll);
+app.get('/osmp/test/users/:id', testosmpusers.find);
+app.post('/osmp/test/auth', testosmpusers.auth);
+app.post('/osmp/test/check_availability', testosmpusers.email_check);
+app.post('/osmp/test/users', testosmpusers.add);
+app.put('/osmp/test/users/:id', testosmpusers.update);
+app.delete('/osmp/test/users/:id', testosmpusers.delete);
 
 app.get('/', function(request, response) {
   response.send('Welcome to the SongFeedback/OpenSourceMusicProject APIs, heres where I might include some helpful information, or just never change this sentence...');
