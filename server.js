@@ -102,7 +102,7 @@ app.put('/osmp/test/users/:id', testosmpusers.update);
 app.delete('/osmp/test/users/:id', testosmpusers.delete);
 
 app.get('/', function(request, response) {
-  response.send('Welcome to the SongFeedback/OpenSourceMusicProject APIs, heres where I might include some helpful information, or just never change this sentence...');
+  response.send('SongFeedback/OpenSourceMusicProject APIs');
 });
 
 var port = process.env.PORT || 5000;
