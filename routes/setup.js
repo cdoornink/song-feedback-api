@@ -8,7 +8,7 @@ var server = new Server('ds033487.mongolab.com', 33487, {auto_reconnect: true});
 db = new Db('heroku_app14829754', server);
 
 db.open(function(err, db) {
-  db.authenticate('heroku_app14829754', 'mctvcf7c9bneljjuam960l2ibp', function(err, success) {
+  db.authenticate('heroku_app14829754', 'HYSD5sYPhlM1ynBF04W', function(err, success) {
     if(!err) {
         // console.log("Supposedly connected to 'heroku_app14829754' database");
         // populateSongsDB();
