@@ -22,6 +22,7 @@ db.open(function(err, db) {
   });
 });
 
+
 var populateSongsDB = function() {
  
     var songs = [{
